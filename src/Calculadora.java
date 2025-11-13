@@ -190,16 +190,16 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-        String nombreEliminar = JOptionPane.showInputDialog(this, "¿Qué operación desea eliminar? Introduzca resultado: ");
+        String entrada = JOptionPane.showInputDialog(this, "Introduzca el resultado que desea eliminar: ");
         
-        if(nombreEliminar == null || nombreEliminar.isEmpty()){
+        if(entrada == null || entrada.isEmpty()){
             JOptionPane.showMessageDialog(this, "No se ha introducido ningún nombre.");
             return;
         }
         
         int resultadoEliminar;
     try {
-        resultadoEliminar = Integer.parseInt(nombreEliminar.trim());
+        resultadoEliminar = Integer.parseInt(entrada.trim());
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Debe introducir un número entero válido.");
         return;
@@ -211,12 +211,13 @@ public class Calculadora extends javax.swing.JFrame {
 
     // Recorrer las filas de abajo hacia arriba
     for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
-        // Suponiendo que el resultado está en la columna 0 (ajústalo si está en otra)
+        
         int resultadoFila;
+        
         try {
-            resultadoFila = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+            resultadoFila = Integer.parseInt(modelo.getValueAt(i, 3).toString());
         } catch (NumberFormatException ex) {
-            continue; // Si la celda no tiene número, la saltamos
+            continue; 
         }
 
         if (resultadoEliminar == resultadoFila) {
